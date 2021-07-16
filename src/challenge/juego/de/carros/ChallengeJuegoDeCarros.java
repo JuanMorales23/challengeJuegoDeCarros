@@ -1,13 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package challenge.juego.de.carros;
+
+import db.conexion;
 
 /**
  *
- * @author USUARIO
+ * @author Juan Esteban Morales Ríos
+ * CC: 1026158485
  */
 public class ChallengeJuegoDeCarros {
 
@@ -15,7 +14,11 @@ public class ChallengeJuegoDeCarros {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        db.conexion con = new conexion();
+        //con.create();
+        con.read();
+        //con.update();
+        con.delete();               
     }
     
 }
