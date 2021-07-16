@@ -1,47 +1,39 @@
 package Podio;
 
+import Jugador.jugador;
+
 public class podio {
-    int idPodio;
-    int idPrimerPuesto;
-    int idSegundoPuesto;    
-    int idTercerPuesto;
-    
-    public podio(int idPodio, int idPrimerPuesto, int idSegundoPuesto, int idTercerPuesto) {
-        this.idPodio = idPodio;
-        this.idPrimerPuesto = idPrimerPuesto;
-        this.idSegundoPuesto = idSegundoPuesto;
-        this.idTercerPuesto = idTercerPuesto;
+    jugador PrimerPuesto;
+    jugador SegundoPuesto;    
+    jugador TercerPuesto;
+
+    public podio(jugador PrimerPuesto, jugador SegundoPuesto, jugador TercerPuesto) {
+        this.PrimerPuesto = PrimerPuesto;
+        this.SegundoPuesto = SegundoPuesto;
+        this.TercerPuesto = TercerPuesto;
     }
 
-    public int getIdPodio() {
-        return idPodio;
+    public jugador getPrimerPuesto() {
+        return PrimerPuesto;
     }
 
-    public void setIdPodio(int idPodio) {
-        this.idPodio = idPodio;
+    public void setPrimerPuesto(jugador PrimerPuesto) {
+        this.PrimerPuesto = PrimerPuesto;
     }
 
-    public int getIdPrimerPuesto() {
-        return idPrimerPuesto;
+    public jugador getSegundoPuesto() {
+        return SegundoPuesto;
     }
 
-    public void setIdPrimerPuesto(int idPrimerPuesto) {
-        this.idPrimerPuesto = idPrimerPuesto;
+    public void setSegundoPuesto(jugador SegundoPuesto) {
+        this.SegundoPuesto = SegundoPuesto;
     }
 
-    public int getIdSegundoPuesto() {
-        return idSegundoPuesto;
+    public jugador getTercerPuesto() {
+        return TercerPuesto;
     }
 
-    public void setIdSegundoPuesto(int idSegundoPuesto) {
-        this.idSegundoPuesto = idSegundoPuesto;
-    }
-
-    public int getIdTercerPuesto() {
-        return idTercerPuesto;
-    }
-
-    public void setIdTercerPuesto(int idTercerPuesto) {
-        this.idTercerPuesto = idTercerPuesto;
+    public void setTercerPuesto(jugador TercerPuesto) {
+        this.TercerPuesto = TercerPuesto;
     }
 }

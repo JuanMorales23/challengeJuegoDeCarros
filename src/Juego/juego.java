@@ -1,48 +1,52 @@
 package Juego;
 
+import Jugador.jugador;
+import Pista.pista;
+import Podio.podio;
+import java.util.ArrayList;
+
 public class juego {
-    int IdJuego;
-    int IdJugadores;
-    int IdPista; 
-    int idPodio;
+    ArrayList<jugador> jugadores;
+    pista pista;
+    podio podio;
+    boolean jugando;
 
-    public juego(int IdJuego, int IdJugadores, int IdPista, int idPodio) {
-        this.IdJuego = IdJuego;
-        this.IdJugadores = IdJugadores;
-        this.IdPista = IdPista;
-        this.idPodio = idPodio;
+    public juego(ArrayList<jugador> jugadores, pista pista, podio podio, boolean jugando) {
+        this.jugadores = jugadores;
+        this.pista = pista;
+        this.podio = podio;
+        this.jugando = jugando;
     }
 
-    public int getIdJuego() {
-        return IdJuego;
+    public ArrayList<jugador> getJugadores() {
+        return jugadores;
     }
 
-    public void setIdJuego(int IdJuego) {
-        this.IdJuego = IdJuego;
+    public void setJugadores(ArrayList<jugador> jugadores) {
+        this.jugadores = jugadores;
     }
 
-    public int getIdJugadores() {
-        return IdJugadores;
+    public pista getPista() {
+        return pista;
     }
 
-    public void setIdJugadores(int IdJugadores) {
-        this.IdJugadores = IdJugadores;
+    public void setPista(pista pista) {
+        this.pista = pista;
     }
 
-    public int getIdPista() {
-        return IdPista;
+    public podio getPodio() {
+        return podio;
     }
 
-    public void setIdPista(int IdPista) {
-        this.IdPista = IdPista;
+    public void setPodio(podio podio) {
+        this.podio = podio;
     }
 
-    public int getIdPodio() {
-        return idPodio;
+    public boolean isJugando() {
+        return jugando;
     }
 
-    public void setIdPodio(int idPodio) {
-        this.idPodio = idPodio;
+    public void setJugando(boolean jugando) {
+        this.jugando = jugando;
     }
-    
 }

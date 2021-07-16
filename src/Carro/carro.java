@@ -1,60 +1,39 @@
 package Carro;
 
+import Conductor.conductor;
+
 public class carro {
+    conductor conductor;
+    int distaciaRecorrida;
+    String Color;
 
-    int idCarro;
-    int idConductor;
-    int idPosicion;
-    int idDistancia;
-    int idJuego;
-
-    public carro(int idCarro, int idConductor, int idPosicion, int idDistancia, int idJuego) {
-        this.idCarro = idCarro;
-        this.idConductor = idConductor;
-        this.idPosicion = idPosicion;
-        this.idDistancia = idDistancia;
-        this.idJuego = idJuego;
+    public carro(conductor conductor, int distaciaRecorrida, String Color, int posicion) {
+        this.conductor = conductor;
+        this.distaciaRecorrida = distaciaRecorrida;
+        this.Color = Color;
     }
 
-    public int getIdCarro() {
-        return idCarro;
+    public conductor getConductor() {
+        return conductor;
     }
 
-    public void setIdCarro(int idCarro) {
-        this.idCarro = idCarro;
+    public void setConductor(conductor conductor) {
+        this.conductor = conductor;
     }
 
-    public int getIdConductor() {
-        return idConductor;
+    public int getDistaciaRecorrida() {
+        return distaciaRecorrida;
     }
 
-    public void setIdConductor(int idConductor) {
-        this.idConductor = idConductor;
+    public void setDistaciaRecorrida(int distaciaRecorrida) {
+        this.distaciaRecorrida = distaciaRecorrida;
     }
 
-    public int getIdPosicion() {
-        return idPosicion;
+    public String getColor() {
+        return Color;
     }
 
-    public void setIdPosicion(int idPosicion) {
-        this.idPosicion = idPosicion;
-    }
-
-    public int getIdDistancia() {
-        return idDistancia;
-    }
-
-    public void setIdDistancia(int idDistancia) {
-        this.idDistancia = idDistancia;
-    }
-
-    public int getIdJuego() {
-        return idJuego;
-    }
-
-    public void setIdJuego(int idJuego) {
-        this.idJuego = idJuego;
-    }
-    
-    
+    public void setColor(String Color) {
+        this.Color = Color;
+    }  
 }

@@ -1,22 +1,12 @@
 package Pista;
 
 public class pista {
-    int idPista;
     int kilometros;
     int numCarriles;
 
-    public pista(int idPista, int kilometros, int numCarriles) {
-        this.idPista = idPista;
+    public pista(int kilometros, int numCarriles) {
         this.kilometros = kilometros;
         this.numCarriles = numCarriles;
-    }
-
-    public int getIdPista() {
-        return idPista;
-    }
-
-    public void setIdPista(int idPista) {
-        this.idPista = idPista;
     }
 
     public int getKilometros() {
@@ -34,6 +24,4 @@ public class pista {
     public void setNumCarriles(int numCarriles) {
         this.numCarriles = numCarriles;
     }
-    
-    
 }
