@@ -1,16 +1,27 @@
-package Carriles;
+package Carril;
 
-public class carriles {
+import Carro.carro;
+import Jugador.jugador;
+
+public class carril {
     int posicion;
     int metros;
     boolean movimientoFinal;
+    jugador jugador;
+    carro carro;
 
-    public carriles(int posicion, int metros, boolean movimientoFinal) {
+    public carril(int posicion, int metros, boolean movimientoFinal, jugador jugador) {
         this.posicion = posicion;
         this.metros = metros;
         this.movimientoFinal = movimientoFinal;
+        this.jugador = jugador;
+        asignarCarro(jugador);
     }
-
+    
+    public void asignarCarro(jugador jugador){
+        carro = new carro(jugador.getConductor(), 0, jugador.getColor(), 0);
+    }
+    
     public int getPosicion() {
         return posicion;
     }
