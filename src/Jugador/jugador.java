@@ -1,25 +1,25 @@
 package Jugador;
 
-import Conductor.conductor;
+import Conductor.Conductor;
 
 public class jugador {
     String nombre;
     String color;
     int puntos;
-    conductor conductor;
+    Conductor conductor;
 
     public jugador(String nombre, String color, int puntos) {
         this.nombre = nombre;
         this.color = color;
         this.puntos = puntos;
-        conductor = new conductor(nombre);
+        conductor = new Conductor(nombre);
     }
 
-    public conductor getConductor() {
+    public Conductor getConductor() {
         return conductor;
     }
 
-    public void setConductor(conductor conductor) {
+    public void setConductor(Conductor conductor) {
         this.conductor = conductor;
     }
 

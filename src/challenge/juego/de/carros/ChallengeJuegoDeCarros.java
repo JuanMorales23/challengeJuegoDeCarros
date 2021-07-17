@@ -16,7 +16,7 @@ public class ChallengeJuegoDeCarros {
      */
     public static void main(String[] args) {
         juego juego = new juego();
-        juego.mostrarMenu();
+        juego.iniciarConfig();
     }
     
 }

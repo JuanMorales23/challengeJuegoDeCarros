@@ -1,25 +1,25 @@
 package Carril;
 
-import Carro.carro;
+import Carro.Carro;
 import Jugador.jugador;
 
-public class carril {
+public class Carril {
     int posicion;
     int metros;
     boolean movimientoFinal;
     jugador jugador;
-    carro carro;
+    Carro carro;
 
-    public carril(int posicion, int metros, boolean movimientoFinal, jugador jugador) {
-        this.posicion = posicion;
+    public Carril(int metros, jugador jugador) {
+        this.posicion = 0;
         this.metros = metros;
-        this.movimientoFinal = movimientoFinal;
+        this.movimientoFinal = false;
         this.jugador = jugador;
         asignarCarro(jugador);
     }
     
     public void asignarCarro(jugador jugador){
-        carro = new carro(jugador.getConductor(), 0, jugador.getColor(), 0);
+        carro = new Carro(jugador.getConductor(), 0, jugador.getColor(), 0);
     }
     
     public int getPosicion() {

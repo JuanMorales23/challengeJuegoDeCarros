@@ -1,23 +1,23 @@
 package Carro;
 
-import Conductor.conductor;
+import Conductor.Conductor;
 
-public class carro {
-    conductor conductor;
+public class Carro {
+    Conductor conductor;
     int distaciaRecorrida;
     String Color;
 
-    public carro(conductor conductor, int distaciaRecorrida, String Color, int posicion) {
+    public Carro(Conductor conductor, int distaciaRecorrida, String Color, int posicion) {
         this.conductor = conductor;
         this.distaciaRecorrida = distaciaRecorrida;
         this.Color = Color;
     }
 
-    public conductor getConductor() {
+    public Conductor getConductor() {
         return conductor;
     }
 
-    public void setConductor(conductor conductor) {
+    public void setConductor(Conductor conductor) {
         this.conductor = conductor;
     }
 
