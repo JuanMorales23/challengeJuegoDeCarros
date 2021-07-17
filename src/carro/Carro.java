@@ -1,15 +1,15 @@
-package Carro;
+package carro;
 
-import Conductor.Conductor;
+import conductor.Conductor;
 
 public class Carro {
     Conductor conductor;
     int distaciaRecorrida;
     String Color;
 
-    public Carro(Conductor conductor, int distaciaRecorrida, String Color, int posicion) {
+    public Carro(Conductor conductor, String Color) {
         this.conductor = conductor;
-        this.distaciaRecorrida = distaciaRecorrida;
+        this.distaciaRecorrida = 0;
         this.Color = Color;
     }
 

@@ -1,18 +1,18 @@
-package Pista;
+package pista;
 
-import Carril.Carril;
-import Carro.Carro;
-import Jugador.jugador;
+import carril.Carril;
+import carro.Carro;
+import jugador.Jugador;
 import java.util.ArrayList;
 
-public class pista {
+public class Pista {
     int kilometros;
     int numCarriles;
     ArrayList<Carril> carriles = new ArrayList<>();
-    ArrayList<jugador> jugadores = new ArrayList<>();
+    ArrayList<Jugador> jugadores = new ArrayList<>();
     Carril carril;
     
-    public pista(int kilometros, int numCarriles, ArrayList<jugador> jugadores) {
+    public Pista(int kilometros, int numCarriles, ArrayList<Jugador> jugadores) {
         this.kilometros = kilometros;
         this.numCarriles = numCarriles;        
         this.jugadores = jugadores;
@@ -24,6 +24,22 @@ public class pista {
             carril = new Carril((kilometros*1000), jugadores.get(i));            
             carriles.add(carril);
         }
+    }
+
+    public ArrayList<Carril> getCarriles() {
+        return carriles;
+    }
+
+    public void setCarriles(ArrayList<Carril> carriles) {
+        this.carriles = carriles;
+    }
+
+    public ArrayList<Jugador> getJugadores() {
+        return jugadores;
+    }
+
+    public void setJugadores(ArrayList<Jugador> jugadores) {
+        this.jugadores = jugadores;
     }
     
     public int getKilometros() {

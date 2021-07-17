@@ -1,15 +1,14 @@
-package Conductor;
+package conductor;
 
 public class Conductor {
     String nombre;
-    //carro carro;
     
     public Conductor(String nombre) {
         this.nombre = nombre;
     }
 
     public int lanzarDados(){        
-        return (int) (Math.random() * 5 + 1);
+        return (int) (Math.random() * 6 + 1);
     }
     
     public String getNombre() {

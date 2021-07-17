@@ -1,17 +1,17 @@
-package Jugador;
+package jugador;
 
-import Conductor.Conductor;
+import conductor.Conductor;
 
-public class jugador {
+public class Jugador {
     String nombre;
     String color;
     int puntos;
     Conductor conductor;
 
-    public jugador(String nombre, String color, int puntos) {
+    public Jugador(String nombre, String color) {
         this.nombre = nombre;
         this.color = color;
-        this.puntos = puntos;
+        this.puntos = 0;
         conductor = new Conductor(nombre);
     }
 

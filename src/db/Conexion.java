@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class conexion {
+public class Conexion {
 
     public static final String URL = "jdbc:mysql://localhost:3306/dbchallenge";
     public static final String USERNAME = "root";
