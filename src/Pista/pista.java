@@ -8,14 +8,15 @@ import java.util.ArrayList;
 public class pista {
     int kilometros;
     int numCarriles;
-    ArrayList<carril> carriles;
-    ArrayList<jugador> jugadores;
+    ArrayList<carril> carriles = new ArrayList<>();
+    ArrayList<jugador> jugadores = new ArrayList<>();
     carril carril;
     
-    public pista(int kilometros, int numCarriles, ArrayList jugadores) {
+    public pista(int kilometros, int numCarriles, ArrayList<jugador> jugadores) {
         this.kilometros = kilometros;
         this.numCarriles = numCarriles;        
         this.jugadores = jugadores;
+        crearCarriles();
     }
     
     public void crearCarriles(){

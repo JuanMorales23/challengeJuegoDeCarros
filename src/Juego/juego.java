@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class juego {
-    ArrayList<jugador> jugadores;
+    ArrayList<jugador> jugadores = new ArrayList<>();
     jugador jugador;
     pista pista;
     podio podio;
@@ -20,7 +20,7 @@ public class juego {
     }
     
     public void mostrarMenu(){        
-        System.out.println("Ingrese el número de jugadores: ");
+        System.out.print("Ingrese el número de jugadores: ");
         numJugadores = sc.nextInt();
         for (int i = 0; i < numJugadores; i++) {
             crearJugador(i);            
@@ -29,14 +29,14 @@ public class juego {
     }
     
     public void crearJugador(int i){
-        System.out.println("Ingrese el color: ");
+        System.out.print("Ingrese el color: ");
         String color = sc.next();
         jugador = new jugador("jugador " + (i+1), color, 0);
         jugadores.add(jugador);
     }
     
     public void asignarCarril(int numJugadores){
-        System.out.println("Cantidad de Kilometros que tendrá la pista: ");
+        System.out.print("Cantidad de Kilometros que tendrá la pista: ");
         int kilometros = sc.nextInt();
         pista = new pista(kilometros, numJugadores, jugadores);        
     }
