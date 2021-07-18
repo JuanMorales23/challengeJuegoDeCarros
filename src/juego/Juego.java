@@ -1,5 +1,6 @@
 package juego;
 
+import db.Conexion;
 import jugador.Jugador;
 import pista.Pista;
 import podio.Podio;
@@ -13,30 +14,46 @@ public class Juego {
     Pista pista;
     Podio podio = new Podio();
     boolean jugando = true;
+    boolean bandera;
     int numJugadores = 0;
     Scanner sc = new Scanner(System.in);
+    Conexion con;
 
     public Juego() {
         iniciarConfig();
-        iniciarJuego();
-        imprimirPodio();
+        do{            
+            iniciarJuego();
+            imprimirPodio(); 
+        }while(volverAJugar() == true);               
     }
 
     public void iniciarConfig() {
+        do {
+            bandera = validarJugadores();
+            if (bandera == true) {
+                for (int i = 0; i < numJugadores; i++) {
+                    crearJugador(i);
+                }
+                asignarCarril(numJugadores);
+            }
+        } while (bandera == false);
+    }
+
+    public boolean validarJugadores() {
         System.out.print("Ingrese el número de jugadores: ");
         numJugadores = sc.nextInt();
-        for (int i = 0; i < numJugadores; i++) {
-            crearJugador(i);
+        if (numJugadores < 3) {
+            System.out.println("No se permiten menos de 3 jugadores");
+            return false;
+        } else {
+            return true;
         }
-        asignarCarril(numJugadores);
     }
 
     public void crearJugador(int i) {
-        //System.out.println("Ingrese el nombre del jugador: ");
-        //String nombre = sc.next();
-        System.out.print("Ingrese el color: ");
-        String color = sc.next();
-        jugador = new Jugador("jugador " + (i + 1), color);
+        System.out.print("Ingrese el nombre del jugador " + (i + 1) + ": ");
+        String nombre = sc.next();
+        jugador = new Jugador(nombre);
         jugadores.add(jugador);
     }
 
@@ -48,7 +65,7 @@ public class Juego {
 
     public void iniciarJuego() {
         int turno = 1;
-        while(jugando == true){
+        while (jugando == true) {
             System.out.println("----Turno " + turno + "-----");
             for (int i = 0; i < jugadores.size(); i++) {
                 turnoJugador(i);
@@ -61,11 +78,11 @@ public class Juego {
     public void turnoJugador(int i) {
         if (pista.getCarriles().get(i).isMovimientoFinal() == false) {
             tirar(i);
-            if(pista.getCarriles().get(i).isMovimientoFinal() == true){
+            if (pista.getCarriles().get(i).isMovimientoFinal() == true) {
                 asignarPuestos(i);
-            }else{
+            } else {
                 
-            }            
+            }
         } else {
             System.out.println("El jugador ya llegó a la meta, se omite el turno.");
         }
@@ -74,30 +91,56 @@ public class Juego {
     public void tirar(int i) {
         System.out.println("Lanza Jugador " + (i + 1));
         int valor = (jugadores.get(i).getConductor().lanzarDados()) * 100;
-        System.out.println("El jugador " + (i + 1) + " sacó " + valor + " puntos.");
+        System.out.println("El jugador " + (i + 1) + " avanza " + valor + " metros.");
         pista.getCarriles().get(i).moverCarro(valor);
     }
 
-    public void asignarPuestos(int i){
-        if(podio.getPrimerPuesto() == null){
+    public void asignarPuestos(int i) {
+        if (podio.getPrimerPuesto() == null) {
             asignarPrimerPuesto(i);
-        }else if(podio.getSegundoPuesto() == null){
+        } else if (podio.getSegundoPuesto() == null) {
             asignarSegundoPuesto(i);
-        }else if(podio.getTercerPuesto() == null){
+        } else if (podio.getTercerPuesto() == null) {
             asignarTercerPuesto(i);
         }
     }
-    
-    public void podioCompleto(){
+
+    public void podioCompleto() {
         jugando = !podio.podioCompleto();
     }
-    
-    public void imprimirPodio(){
-        System.out.println("1er Puesto: " + podio.getPrimerPuesto().getNombre());        
-        System.out.println("2do Puesto: " + podio.getSegundoPuesto().getNombre());  
-        System.out.println("3er Puesto: " + podio.getTercerPuesto().getNombre());  
+
+    public void imprimirPodio() {
+        System.out.println("1er Puesto: " + podio.getPrimerPuesto().getNombre());
+        System.out.println("2do Puesto: " + podio.getSegundoPuesto().getNombre());
+        System.out.println("3er Puesto: " + podio.getTercerPuesto().getNombre());
+        int puntos = podio.getPrimerPuesto().getPuntos() + 1;
+        podio.getPrimerPuesto().setPuntos(puntos);
+        enviarDatos();        
     }
     
+    public boolean volverAJugar(){
+        boolean nuevoJuego = false, flag = false;
+        String opc = "";
+        do{
+            System.out.print("Desea jugar nuevamente? (s/n): ");
+            opc = sc.next();
+            switch (opc){
+                case "s":
+                    nuevoJuego = true;
+                    flag = true;
+                    break;
+                case "n":
+                    nuevoJuego = false;
+                    flag = true;
+                    break;
+                default:
+                    System.out.println("Opción no válida.");                   
+                    break;
+            }            
+        }while(flag == false);
+        return nuevoJuego;
+    }
+
     public void asignarPrimerPuesto(int i) {
         podio.setPrimerPuesto(jugadores.get(i));
     }
@@ -108,6 +151,11 @@ public class Juego {
 
     public void asignarTercerPuesto(int i) {
         podio.setTercerPuesto(jugadores.get(i));
+    }
+
+    public void enviarDatos() {
+        con = new Conexion();
+        con.insertarGanadores(podio);
     }
 
     public ArrayList<Jugador> getJugadores() {

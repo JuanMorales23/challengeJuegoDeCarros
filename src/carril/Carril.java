@@ -19,7 +19,7 @@ public class Carril {
     }
     
     public void asignarCarro(Jugador jugador){
-        carro = new Carro(jugador.getConductor(), jugador.getColor());
+        carro = new Carro(jugador.getConductor());
     }
     
     public void moverCarro(int movimientos){

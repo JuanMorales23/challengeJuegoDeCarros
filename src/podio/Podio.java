@@ -20,7 +20,7 @@ public class Podio {
             return false;
         }
     }
-    
+
     public Jugador getPrimerPuesto() {
         return PrimerPuesto;
     }

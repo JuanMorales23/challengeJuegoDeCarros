@@ -4,12 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Challenge%20-%20Juego%20de%20carros/src/challenge/juego/de/carros/ChallengeJuegoDeCarros.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Challenge%20-%20Juego%20de%20carros/src/Juego/juego.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Challenge%20-%20Juego%20de%20carros/src/Pista/pista.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Challenge%20-%20Juego%20de%20carros/src/Jugador/jugador.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Challenge%20-%20Juego%20de%20carros/src/Carril/Carril.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Challenge%20-%20Juego%20de%20carros/src/Carro/Carro.java</file>
-            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Challenge%20-%20Juego%20de%20carros/src/Conductor/Conductor.java</file>
+            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Challenge%20-%20Juego%20de%20carros/src/pista/Pista.java</file>
+            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Challenge%20-%20Juego%20de%20carros/src/jugador/Jugador.java</file>
+            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Challenge%20-%20Juego%20de%20carros/src/carro/Carro.java</file>
+            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Challenge%20-%20Juego%20de%20carros/src/podio/Podio.java</file>
+            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Challenge%20-%20Juego%20de%20carros/src/db/Conexion.java</file>
+            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Challenge%20-%20Juego%20de%20carros/src/carril/Carril.java</file>
+            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Challenge%20-%20Juego%20de%20carros/src/conductor/Conductor.java</file>
+            <file>file:/C:/Users/USUARIO/Documents/NetBeansProjects/Challenge%20-%20Juego%20de%20carros/src/juego/Juego.java</file>
         </group>
     </open-files>
 </project-private>
