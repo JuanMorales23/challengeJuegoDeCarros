@@ -4,11 +4,11 @@ import carro.Carro;
 import jugador.Jugador;
 
 public class Carril {
-    int posicion;
-    int metrosTotales;
-    boolean movimientoFinal;
-    Jugador jugador;
-    Carro carro;
+    private int posicion;
+    private int metrosTotales;
+    private boolean movimientoFinal;
+    private Jugador jugador;
+    private Carro carro;
 
     public Carril(int metrosTotales, Jugador jugador) {
         this.posicion = 0;
@@ -28,6 +28,10 @@ public class Carril {
         cruzoMeta();
     }
     
+    public void reiniciarPosicionCarro(){
+        carro.setDistaciaRecorrida(0);
+    }
+    
     public void cruzoMeta(){
         if(posicion < metrosTotales){
             movimientoFinal = false;
@@ -35,7 +39,7 @@ public class Carril {
             movimientoFinal = true;
         }        
     }
-    
+        
     public int getPosicion() {
         return posicion;
     }

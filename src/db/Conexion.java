@@ -5,18 +5,19 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import jugador.Jugador;
 import podio.Podio;
 
 public class Conexion {
 
-    public static final String URL = "jdbc:mysql://localhost:3306/dbchallenge";
-    public static final String USERNAME = "root";
-    public static final String PASSWORD = "";
-    PreparedStatement sql;
-    ResultSet res;
+    private static final String URL = "jdbc:mysql://localhost:3306/dbchallenge";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "";
+    private Connection con = null;
+    private PreparedStatement sql = null;
+    private ResultSet res;
 
-    public static Connection getConnection() {
-        Connection con = null;
+    public Connection getConnection() {        
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = (Connection) DriverManager.getConnection(URL, USERNAME, PASSWORD);
@@ -26,25 +27,86 @@ public class Conexion {
         return con;
     }
 
-    public void insertarGanadores(Podio podio) {
+    public void actualizarGanador(Podio podio) {
         try {
-            Connection con = null;
-            con = getConnection();
-            sql = con.prepareStatement("INSERT INTO `ganadores` (`primerPuesto`,`segundoPuesto`,`tercerPuesto`,`puntos`)"
-                    + " VALUES (?, ?, ?, ?);");
-            sql.setString(1, podio.getPrimerPuesto().getNombre());
-            sql.setString(2, podio.getSegundoPuesto().getNombre());
-            sql.setString(3, podio.getTercerPuesto().getNombre());            
-            sql.setInt(4, podio.getPrimerPuesto().getPuntos());
-            int resultado = sql.executeUpdate();     
-            if(resultado > 0){
-                System.out.println("Se guardó correctamente");
-            }else{
-                System.out.println("No se pudo guardar");
+            int id = buscarIdJugador(podio.getPrimerPuesto());
+            if (id != 0) {
+                sql = con.prepareStatement("UPDATE `jugadores` SET `ganadas`='"
+                        + podio.getPrimerPuesto().getGanadas() + "' WHERE `id`='" + id + "'");
+                sql.executeUpdate();
+            } else {
+
             }
-            con.close();
         } catch (SQLException e) {
             System.out.println(e);
         }
+    }
+
+    public void insertarGanadores(Podio podio) {
+        sql = null;
+        try {                        
+            sql = con.prepareStatement("INSERT INTO `ganadores` (`primerPuesto`,`segundoPuesto`,`tercerPuesto`) VALUES (?, ?, ?);");
+            sql.setString(1, podio.getPrimerPuesto().getNombre());
+            sql.setString(2, podio.getSegundoPuesto().getNombre());
+            sql.setString(3, podio.getTercerPuesto().getNombre());
+            int resultado = sql.executeUpdate();
+            if (resultado > 0) {
+                System.out.println("Se guardó correctamente");
+            } else {
+                System.out.println("No se pudo guardar");
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public void insertarJugadores(Jugador jugador) {
+        try {
+            sql = con.prepareStatement("INSERT INTO `jugadores` (`nombre`,`ganadas`) VALUES (?, ?);");
+            sql.setString(1, jugador.getNombre());
+            sql.setInt(2, jugador.getGanadas());
+            int resultado = sql.executeUpdate();
+            if (resultado > 0) {
+                System.out.println("Se guardó correctamente");
+            } else {
+                System.out.println("No se pudo guardar");
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public boolean buscarJugador(String nombre) {
+        boolean existe = false;
+        try {
+            sql = con.prepareStatement("SELECT * FROM `jugadores` WHERE `nombre`='" + nombre + "'");
+            res = sql.executeQuery();
+            if (res.next()) {
+                System.out.println("El jugador ya existe.");
+                existe = true;
+
+            } else {
+                existe = false;
+            }         
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return existe;
+    }
+
+    public int buscarIdJugador(Jugador jugador) {
+        int id = 0;
+        try {
+            sql = con.prepareStatement("SELECT id FROM `jugadores` WHERE `nombre`='" + jugador.getNombre() + "'");
+            res = sql.executeQuery();
+            if (res.next()) {
+                id = Integer.parseInt(res.getString("id"));
+            } else {
+                System.out.println("No se encontró el registro");
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return id;
     }
 }

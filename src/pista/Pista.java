@@ -6,11 +6,11 @@ import jugador.Jugador;
 import java.util.ArrayList;
 
 public class Pista {
-    int kilometros;
-    int numCarriles;
-    ArrayList<Carril> carriles = new ArrayList<>();
-    ArrayList<Jugador> jugadores = new ArrayList<>();
-    Carril carril;
+    private int kilometros;
+    private int numCarriles;
+    private ArrayList<Carril> carriles = new ArrayList<>();
+    private ArrayList<Jugador> jugadores = new ArrayList<>();
+    private Carril carril;
     
     public Pista(int kilometros, int numCarriles, ArrayList<Jugador> jugadores) {
         this.kilometros = kilometros;
@@ -23,6 +23,14 @@ public class Pista {
         for (int i = 0; i < numCarriles; i++) {
             carril = new Carril((kilometros*1000), jugadores.get(i));            
             carriles.add(carril);
+        }
+    }
+    
+    public void reiniciarPosiciones(){
+        for (int i = 0; i < carriles.size(); i++) {
+            carriles.get(i).setPosicion(0);
+            carriles.get(i).reiniciarPosicionCarro();
+            carriles.get(i).setMovimientoFinal(false);
         }
     }
 

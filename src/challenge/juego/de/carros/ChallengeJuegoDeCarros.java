@@ -2,7 +2,6 @@
 package challenge.juego.de.carros;
 
 import juego.Juego;
-import db.Conexion;
 
 /**
  *

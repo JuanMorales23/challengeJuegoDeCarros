@@ -9,21 +9,23 @@ import java.util.Scanner;
 
 public class Juego {
 
-    ArrayList<Jugador> jugadores = new ArrayList<>();
-    Jugador jugador;
-    Pista pista;
-    Podio podio = new Podio();
-    boolean jugando = true;
-    boolean bandera;
-    int numJugadores = 0;
-    Scanner sc = new Scanner(System.in);
-    Conexion con;
+    private ArrayList<Jugador> jugadores = new ArrayList<>();
+    private Jugador jugador;
+    private Pista pista;
+    private Podio podio = new Podio();
+    private Boolean jugando = true;
+    private Boolean bandera;
+    private Integer numJugadores = 0;
+    private Scanner sc = new Scanner(System.in);
+    private Conexion con = new Conexion();
 
     public Juego() {
+        con.getConnection();
         iniciarConfig();
         do{            
             iniciarJuego();
-            imprimirPodio(); 
+            imprimirPodio();
+            enviarDatosGanadores();
         }while(volverAJugar() == true);               
     }
 
@@ -53,10 +55,19 @@ public class Juego {
     public void crearJugador(int i) {
         System.out.print("Ingrese el nombre del jugador " + (i + 1) + ": ");
         String nombre = sc.next();
-        jugador = new Jugador(nombre);
-        jugadores.add(jugador);
+        jugadorExiste(nombre, i);
     }
 
+    public void jugadorExiste(String nombre, int i){       
+        if(con.buscarJugador(nombre) == true){
+            crearJugador(i);
+        }else{
+            jugador = new Jugador(nombre);
+            jugadores.add(jugador);
+            enviarDatosJugadores(i);
+        }        
+    }
+    
     public void asignarCarril(int numJugadores) {
         System.out.print("Cantidad de Kilometros que tendrá la pista: ");
         int kilometros = sc.nextInt();
@@ -80,11 +91,9 @@ public class Juego {
             tirar(i);
             if (pista.getCarriles().get(i).isMovimientoFinal() == true) {
                 asignarPuestos(i);
-            } else {
-                
             }
         } else {
-            System.out.println("El jugador ya llegó a la meta, se omite el turno.");
+            System.out.println("El jugador " + (i+1) + " ya llegó a la meta, se omite el turno.");
         }
     }
 
@@ -113,20 +122,23 @@ public class Juego {
         System.out.println("1er Puesto: " + podio.getPrimerPuesto().getNombre());
         System.out.println("2do Puesto: " + podio.getSegundoPuesto().getNombre());
         System.out.println("3er Puesto: " + podio.getTercerPuesto().getNombre());
-        int puntos = podio.getPrimerPuesto().getPuntos() + 1;
-        podio.getPrimerPuesto().setPuntos(puntos);
-        enviarDatos();        
+        int ganadas = podio.getPrimerPuesto().getGanadas() + 1;
+        podio.getPrimerPuesto().setGanadas(ganadas);                
     }
     
     public boolean volverAJugar(){
-        boolean nuevoJuego = false, flag = false;
+        Boolean nuevoJuego = false;
+        Boolean flag = false;
         String opc = "";
         do{
             System.out.print("Desea jugar nuevamente? (s/n): ");
             opc = sc.next();
             switch (opc){
                 case "s":
-                    nuevoJuego = true;
+                    nuevoJuego = true;                    
+                    jugando = true;
+                    pista.reiniciarPosiciones();
+                    podio.reiniciarPodio();
                     flag = true;
                     break;
                 case "n":
@@ -140,6 +152,15 @@ public class Juego {
         }while(flag == false);
         return nuevoJuego;
     }
+    
+    public void enviarDatosGanadores() {  
+        con.actualizarGanador(podio);
+        con.insertarGanadores(podio);
+    }
+    
+    public void enviarDatosJugadores(int i) {       
+        con.insertarJugadores(jugadores.get(i));
+    }
 
     public void asignarPrimerPuesto(int i) {
         podio.setPrimerPuesto(jugadores.get(i));
@@ -151,11 +172,6 @@ public class Juego {
 
     public void asignarTercerPuesto(int i) {
         podio.setTercerPuesto(jugadores.get(i));
-    }
-
-    public void enviarDatos() {
-        con = new Conexion();
-        con.insertarGanadores(podio);
     }
 
     public ArrayList<Jugador> getJugadores() {

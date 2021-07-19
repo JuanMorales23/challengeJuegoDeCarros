@@ -1,7 +1,7 @@
 package conductor;
 
 public class Conductor {
-    String nombre;
+    private String nombre;
     
     public Conductor(String nombre) {
         this.nombre = nombre;

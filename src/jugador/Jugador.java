@@ -3,13 +3,13 @@ package jugador;
 import conductor.Conductor;
 
 public class Jugador {
-    String nombre;
-    int puntos;
-    Conductor conductor;
+    private String nombre;
+    private int ganadas;
+    private Conductor conductor;
 
     public Jugador(String nombre) {
         this.nombre = nombre;
-        this.puntos = 0;
+        this.ganadas = 0;
         conductor = new Conductor(nombre);
     }
 
@@ -29,11 +29,13 @@ public class Jugador {
         this.nombre = nombre;
     }
 
-    public int getPuntos() {
-        return puntos;
+    public int getGanadas() {
+        return ganadas;
     }
 
-    public void setPuntos(int puntos) {
-        this.puntos = puntos;
+    public void setGanadas(int ganadas) {
+        this.ganadas = ganadas;
     }
+
+
 }

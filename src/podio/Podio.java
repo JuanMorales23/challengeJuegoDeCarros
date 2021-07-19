@@ -3,9 +3,9 @@ package podio;
 import jugador.Jugador;
 
 public class Podio {
-    Jugador PrimerPuesto;
-    Jugador SegundoPuesto;    
-    Jugador TercerPuesto;
+    private Jugador PrimerPuesto;
+    private Jugador SegundoPuesto;    
+    private Jugador TercerPuesto;
 
     public Podio() {
         this.PrimerPuesto = null;
@@ -21,6 +21,12 @@ public class Podio {
         }
     }
 
+    public void reiniciarPodio(){
+        PrimerPuesto = null;
+        SegundoPuesto = null;
+        TercerPuesto = null;
+    }
+    
     public Jugador getPrimerPuesto() {
         return PrimerPuesto;
     }

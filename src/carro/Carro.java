@@ -3,8 +3,8 @@ package carro;
 import conductor.Conductor;
 
 public class Carro {
-    Conductor conductor;
-    int distaciaRecorrida;
+    private Conductor conductor;
+    private int distaciaRecorrida;
 
     public Carro(Conductor conductor) {
         this.conductor = conductor;
